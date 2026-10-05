@@ -18,14 +18,14 @@ public class BalloonRaycaster : MonoBehaviour
     void Update()
     {
         // No mouse attached? Nothing to do.
-        if (Mouse.current == null)
+        if (Mouse.current == null || Touchscreen.current==null)
         {
             return;
         }
 
         // Only react on the single frame the left button goes DOWN,
         // otherwise we would fire every frame while the button is held.
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame || Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
         {
             // 1. Where is the mouse on the screen? (in pixels)
             Vector2 screenPosition = Mouse.current.position.ReadValue();
